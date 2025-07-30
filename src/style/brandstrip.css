@@ -1,0 +1,11 @@
+.brand-strip {
+    display: flex;
+    color: #eee;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 1rem;
+    background-color: black;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2rem;
+}

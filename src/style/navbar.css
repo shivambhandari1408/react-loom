@@ -1,0 +1,123 @@
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 98%;
+    height: 62px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 1000;;
+}
+
+.navbar.slide-up{
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.three-line{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.menu-dropdown {
+  display: flex;
+  flex-direction: column;
+  
+  position: absolute;
+  top: 35px; 
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 10px 60px 40px 20px;
+  z-index: 1000;
+  display: flex;
+  width: 130px;
+  gap: 17px;
+  backdrop-filter: blur(12px);
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility  0.3s ease;
+}
+
+
+.menu-wrapper:hover .menu-dropdown,
+.menu-dropdown:hover{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+
+}
+
+.menu-item {
+  color:white ;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.menu-wrapper:not(:hover):not(:has(.menu-dropdown:hover)) .menu-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-delay: 0.2s;
+}
+
+.nav-logo {
+    margin: 0px 78px 0px 475px;
+    width: 205px;
+    height: 55px;
+  }
+
+.search-box {
+    border: none;
+    width: 230px;
+    height: 45px;
+    padding: 0px 20px;
+    border-radius: -18px;
+    background-color: #f3f4f6;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.emoji-pic{
+    display: flex;
+}

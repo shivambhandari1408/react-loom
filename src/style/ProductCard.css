@@ -1,0 +1,66 @@
+
+.product-card {
+    position: relative;
+    z-index: 1;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 12px rgba(0, 0, 1, 0.3);
+    border-radius: 1px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-image {
+  width: 100%;
+  height: 256px; 
+  object-fit: cover;
+}
+.image-container {
+  position: relative;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 35px;
+  color: black;
+  background-color: white;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.product-info {
+  padding: 3px 0px 3px 3px;
+  background-color: #f3f4f6;
+}
+
+.product-name {
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.product-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+ 
+.current-price {
+  font-size: 13px;
+  font-weight: bold;
+  color: #111827; 
+}
+
+.original-price {
+  font-size: 14px;
+  color: #6b7280; 
+  text-decoration: line-through;
+}

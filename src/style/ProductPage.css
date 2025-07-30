@@ -1,0 +1,194 @@
+
+.Casual-section {
+  margin-top: 100px;
+  background-color: #fff;
+  padding: 0px 50px;
+}
+
+.Casual-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+.casual-content {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-container {
+  width: max-content;
+  height: fit-content;
+  flex: 0 0 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  border: solid 1px black;
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.filter-section h4 {
+  padding-bottom: 5px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-list1 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-list1 li {
+  list-style: disc;
+  margin: 4px 0;
+}
+.filter-list1 h4 {
+  margin-bottom: 8px;
+}
+
+.filter-range {
+  padding: 0px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-range h4 {
+  margin-bottom: 8px;
+}
+
+.range-bar {
+  width: 100%;
+  margin: 0;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 0 2px;
+  padding: 0px 0px 10px 0px;
+}
+
+.filter-color{
+   border-bottom: 1px solid #ddd;
+}
+
+.filter-color h4 {
+  margin-bottom: 8px;
+}
+
+.filter-colorall {
+  display: flex;
+  flex-wrap: wrap;        
+  gap: 10px;
+  max-width: 100%;  
+  margin-bottom: 15px;    
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.filter-size{
+   border-bottom: 1px solid #ddd;
+}
+
+.filter-size h4 {
+  margin-bottom: 8px;
+}
+
+.filter-sizeall{
+  display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.filter-dressstyle { 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+
+}
+
+.filter-dressstyle h4 {
+  margin-bottom: 8px;
+}
+
+.apply-filter {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.apply-filter button {
+    background-color: black;
+    color: white;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.apply-filter button:hover {
+  background-color: #333;
+}
+
+.product-casual {
+  padding-left: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  gap: 10px;
+  width: 100%;
+}
+
+/* .product-casual {
+  flex: 0 0 85%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+} */
+.product-wrapper {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

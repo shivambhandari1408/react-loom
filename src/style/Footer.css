@@ -1,0 +1,102 @@
+.footer-container {
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 40px 40px;
+  border-bottom: 10px solid #ddd;
+}
+
+.newsletter {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+   height: 150px;
+  border-radius: 12px;
+}
+.newsletter-text h2 {
+    justify-content: center;
+    text-align: left;
+    
+    padding: 2px 45px;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 1;
+}
+
+.newsletter-form {
+    margin: 5px 50px 0px 95px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    color: black;
+    outline: none;
+    background-color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 260px;
+    padding: 11px 16px;
+}
+
+.newsletter-form button {
+    color: black;
+    outline: none;
+    background-color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 300px;
+    padding: 11px 16px;
+    cursor: pointer;
+    transition: 1.03;
+}
+
+.newsletter-form button:hover {
+  background-color: #e5e5e5;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    display: flex
+;
+}
+
+.footer-brand {
+  min-width: 200px; 
+}
+
+.footer-brand h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+    padding: 0px 53px 0px 0px;
+    font-size: 13px;
+    color: #555;
+    max-width: 260px;
+    cursor: pointer;
+}
+
+.footer-columns {
+  display: flex;
+  gap: 140px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-left: 25px;
+}
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+}
+
