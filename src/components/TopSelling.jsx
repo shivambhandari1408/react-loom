@@ -23,19 +23,16 @@ function TopSelling() {
       <h1 className="top-selling-heading">TOP SELLING</h1>
       <div className="top-selling-grid">
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="top-selling-card-wrapper"
-            onClick={() => navigate("/about", { state: { product } })}
-          >
             <ProductCard
-              name={product.title}
-              price={product.price}
-              original={product.originalPrice || product.price}
-              image={product.thumbnail}
-              rating={product.rating}
-            />
-          </div>
+            key={product.id}
+            name={product.title}
+            price={product.price}
+            original={product.originalPrice || product.price}
+            image={product.thumbnail}
+            rating={product.rating}
+            product={product} // ✅ Pass full product to support WishlistIcon
+            onClick={() => navigate("/about", { state: { product } })} // ✅ Move click handler to ProductCard
+          />
         ))}
       </div>
     </section>

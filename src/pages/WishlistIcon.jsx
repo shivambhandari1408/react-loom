@@ -13,7 +13,7 @@ function WishlistIcon({ product }) {
     <span className="wishlist-icon" onClick={handleClick} style={{ cursor: "pointer", fontSize: "1.5rem" }}>
       {isWishlisted(product) ? "❤️" : "♡"}
     </span>
-  );
+  )
 }
 
 export default WishlistIcon;
