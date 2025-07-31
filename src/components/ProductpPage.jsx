@@ -17,6 +17,7 @@ function ProductPage() {
       .get(`https://dummyjson.com/products/category/${category}`)
       .then((res) => {
         setProducts(res.data.products);
+        console.log(res, "Products fetched for category:", category);
       })
       .catch((err) => {
         console.error("API error:", err);
@@ -105,19 +106,19 @@ function ProductPage() {
 
         <div className="product-casual">
           {products.map((product) => (
-            <div
-              key={product.id}
-              className="product-wrapper"
-              onClick={() => navigate("/about", { state: { product } })}
-            >
-              <ProductCard
-                name={product.title}
-                price={product.price}
-                original={product.originalPrice || product.price}
-                image={product.thumbnail}
-                rating={product.rating}
-              />
-            </div>
+              <div
+                key={product.id}
+                className="product-wrapper"
+                onClick={() => navigate("/about", { state: { product } })}
+              >
+                <ProductCard 
+                  name={product.title}
+                  price={product.price}
+                  original={product.originalPrice || product.price}
+                  image={product.thumbnail}
+                  rating={product.rating} product={product} />
+              </div>
+
           ))}
         </div>
       </div>

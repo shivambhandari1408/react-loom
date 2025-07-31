@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../style/navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "./wishlistContext";
 
 function Navbar({ cartCount, className = "" }) {
   const navigate = useNavigate();
+  const {wishlist} = useWishlist()
+
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hidden, setHidden] = useState(false);
 
@@ -68,7 +71,7 @@ function Navbar({ cartCount, className = "" }) {
        />
 
       <div className="emoji-pic">
-        <div className="cart-icon" onClick={() => navigate("/wishlist")} > ♡
+        <div className="cart-icon" onClick={() => navigate("/wishlist")} > ♡ {wishlist.length > 0 && <span className="cart-badge">{wishlist.length}</span>}
           </div>
           <div className="cart-icon" onClick={() => navigate("/bag")}>
             🛒{cartCount > 0 && (<span className="cart-badge">{cartCount}</span>)}

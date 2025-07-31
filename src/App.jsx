@@ -26,7 +26,6 @@ function Home() {
       <BrandStripe />
       <div id="new-arrivals-section"><NewArrivals /></div>
       <div id="top-selling-section"><TopSelling /></div>
-      <TopSelling />
       <Browse />
     </div>
   );

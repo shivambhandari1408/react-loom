@@ -147,6 +147,7 @@
 }
 
 .product-casual {
+  margin-top: 50px;
   padding-left: 100px;
   display: grid;
   grid-template-columns: repeat(4, 0fr);

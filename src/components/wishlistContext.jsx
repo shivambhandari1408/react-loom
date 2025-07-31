@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState(() => {
-    const stored = localStorage.getItem("wishlist");
-    return stored ? JSON.parse(stored) : [];
+    const saved = localStorage.getItem("wishlist");
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
@@ -31,41 +31,9 @@ export const useWishlist = () => {
       const exists = prev.some((item) => item.id === product.id);
       return exists
         ? prev.filter((item) => item.id !== product.id)
-        : [...prev, product];
+        : [...prev, product]; // ✅ Store full object
     });
   };
 
   return { wishlist, isWishlisted, toggleWishlist };
 };
-
-
-
-// import React , {createContext, useContext, useState,useEffect, Children} from "react";
-
-// const WishlistContext= createContext();
-//  export const WishlistProvider = ({Children}) => {
-//     const [wishlist, setWishlist] = useState(()=>{
-//         const stored =localStorage.getItem("wishlist");
-//         return stored ? JSON.parse(stored) : [];
-//     });
-
-//     useEffect (()=> {
-//         localStorage.setItem("wishlist", JSON.stringify(wishlist));
-//     }, [wishlist]);
-
-//     const toggleWishlist=(product) => {
-//         setWishlist((prev)=>{
-//             const exists= prev.find((item )=> item.id ===product.id);
-//             return exists ? prev.filter((item)=>item.id !==product.id)
-//             : [...prev, product];
-//         })
-//     };
-//     const isWishlisted = (id)=> wishlist.some((item)=> item.id === id );
-
-//     return (
-//         <WishlistContext.Provider value={{ wishlist, toggleWishlist,isWishlisted}}>
-//             {Children}
-//         </WishlistContext.Provider>
-//     );
-//  };
-//  export const useWishlist =() => useContext(WishlistContext);
