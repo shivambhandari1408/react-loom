@@ -35,7 +35,7 @@ function Navbar({ cartCount, className = "" }) {
       <div className="menu-wrapper">
         <img
           src="https://www.svgrepo.com/show/491652/line-3.svg"
-          alt="menu"
+          alt="menu" 
           className="three-line"
         />
         <div className="menu-dropdown">

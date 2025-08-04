@@ -30,7 +30,7 @@ function ProductCard({ name, price, original, image, rating, product = {}, onCli
         <div className="product-pricing">
           <span className="current-price">₹{finalProduct.price}</span>
           {finalProduct.original !== finalProduct.price && (
-            <span className="original-price">₹{finalProduct.original}</span>
+            <span className="original-price">{finalProduct.original}</span>
           )}
         </div>
         <div className="product-rating">⭐ {finalProduct.rating}</div>

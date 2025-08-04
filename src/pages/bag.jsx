@@ -169,7 +169,6 @@ function BagPage({ setCartCount }) {
                   🗑
                 </span>
               </div>
-
               <div className="total-price">
                 <p className="striked">
                   Rs.{(item.originalPrice * item.quantity).toFixed(2)}

@@ -1,7 +1,10 @@
+
+
+
+
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
-import { useNavigate } from "react-router-dom";
 import "../style/productpage.css";
 import axios from "axios";
 
@@ -28,8 +31,8 @@ function ProductPage() {
     <section className="Casual-section">
       <h1>{category.toUpperCase()}</h1>
       <div className="casual-content">
+        {/* Filters */}
         <div className="filter-container">
-          {/* Filters */}
           <div className="filter-section">
             <h4>Filter</h4>
             <div className="filter-list1">
@@ -53,30 +56,15 @@ function ProductPage() {
           <div className="filter-color">
             <h4>Color</h4>
             <div className="filter-colorall">
-              <div
-                style={{ backgroundColor: "red" }}
-                className="color-circle"
-              ></div>
-              <div
-                style={{ backgroundColor: "blue" }}
-                className="color-circle"
-              ></div>
-              <div
-                style={{ backgroundColor: "pink" }}
-                className="color-circle"
-              ></div>
-              <div
-                style={{ backgroundColor: "orange" }}
-                className="color-circle"
-              ></div>
-              <div
-                style={{ backgroundColor: "black" }}
-                className="color-circle"
-              ></div>
-              <div
-                style={{ backgroundColor: "yellow" }}
-                className="color-circle"
-              ></div>
+              {["red", "blue", "pink", "orange", "black", "yellow"].map(
+                (color) => (
+                  <div
+                    key={color}
+                    style={{ backgroundColor: color }}
+                    className="color-circle"
+                  ></div>
+                )
+              )}
             </div>
           </div>
 
@@ -104,21 +92,14 @@ function ProductPage() {
           </div>
         </div>
 
+        {/* Product List */}
         <div className="product-casual">
           {products.map((product) => (
-              <div
-                key={product.id}
-                className="product-wrapper"
-                onClick={() => navigate("/about", { state: { product } })}
-              >
-                <ProductCard 
-                  name={product.title}
-                  price={product.price}
-                  original={product.originalPrice || product.price}
-                  image={product.thumbnail}
-                  rating={product.rating} product={product} />
-              </div>
-
+            <ProductCard
+              key={product.id}
+              product={product}
+              onClick={() => navigate("/about", { state: { product } })}
+            />
           ))}
         </div>
       </div>
@@ -140,22 +121,25 @@ export default ProductPage;
 // import { useNavigate } from "react-router-dom";
 // import "../style/productpage.css";
 // import axios from "axios";
+
 // function ProductPage() {
-//   const navigate= useNavigate();
+//   const navigate = useNavigate();
 //   const { category } = useParams();
 //   const [products, setProducts] = useState([]);
 
 //   useEffect(() => {
 //     if (!category) return;
 //     window.scrollTo(0, 0);
-//     axios 
-//     .get(`https://dummyjson.com/products/category/${category}`)
-//     .then((res)=>{
-//       setProducts(res.data.products);
-//     })
-//       .catch((err)=>{console.error("API error:", err);
-//     });
-//   }, [category]); 
+//     axios
+//       .get(`https://dummyjson.com/products/category/${category}`)
+//       .then((res) => {
+//         setProducts(res.data.products);
+//         console.log(res, "Products fetched for category:", category);
+//       })
+//       .catch((err) => {
+//         console.error("API error:", err);
+//       });
+//   }, [category]);
 
 //   return (
 //     <section className="Casual-section">
@@ -186,12 +170,30 @@ export default ProductPage;
 //           <div className="filter-color">
 //             <h4>Color</h4>
 //             <div className="filter-colorall">
-//               <div style={{ backgroundColor: "red" }} className="color-circle"></div>
-//               <div style={{ backgroundColor: "blue" }} className="color-circle"></div>
-//               <div style={{ backgroundColor: "pink" }} className="color-circle"></div>
-//               <div style={{ backgroundColor: "orange" }} className="color-circle"></div>
-//               <div style={{ backgroundColor: "black" }} className="color-circle"></div>
-//               <div style={{ backgroundColor: "yellow" }} className="color-circle"></div>
+//               <div
+//                 style={{ backgroundColor: "red" }}
+//                 className="color-circle"
+//               ></div>
+//               <div
+//                 style={{ backgroundColor: "blue" }}
+//                 className="color-circle"
+//               ></div>
+//               <div
+//                 style={{ backgroundColor: "pink" }}
+//                 className="color-circle"
+//               ></div>
+//               <div
+//                 style={{ backgroundColor: "orange" }}
+//                 className="color-circle"
+//               ></div>
+//               <div
+//                 style={{ backgroundColor: "black" }}
+//                 className="color-circle"
+//               ></div>
+//               <div
+//                 style={{ backgroundColor: "yellow" }}
+//                 className="color-circle"
+//               ></div>
 //             </div>
 //           </div>
 
@@ -221,15 +223,19 @@ export default ProductPage;
 
 //         <div className="product-casual">
 //           {products.map((product) => (
-//             <div key={product.id} className="product-wrapper" onClick={() => navigate("/about", {state:{product}})}>
-//               <ProductCard
-//                 name={product.title}
-//                 price={product.price}
-//                 original={product.originalPrice || product.price}
-//                 image={product.thumbnail}
-//                 rating={product.rating}
-//               />
-//             </div>
+//               <div
+//                 key={product.id}
+//                 className="product-wrapper"
+//                 onClick={() => navigate("/about", { state: { product } })}
+//               >
+//                 <ProductCard 
+//                   name={product.title}
+//                   price={product.price}
+//                   original={product.originalPrice || product.price}
+//                   image={product.thumbnail}
+//                   rating={product.rating} product={product} />
+//               </div>
+
 //           ))}
 //         </div>
 //       </div>
@@ -238,5 +244,8 @@ export default ProductPage;
 // }
 
 // export default ProductPage;
+
+
+
 
 

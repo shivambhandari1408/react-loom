@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../components/wishlistContext";
 import ProductCard from "../components/ProductCard";
-import "../style/productpage.css";
+import "../style/wishlistPage.css";
 import "../style/bag.css"; // to reuse empty-cart styles
 
 function WishlistPage() {
@@ -11,7 +11,6 @@ function WishlistPage() {
 
   return (
     <section className="casual-section">
-      <h1>MY WISHLIST</h1>
       {wishlist.length === 0 ? (
         <div className="empty-cart">
           <h1>Your Wishlist is empty</h1>
@@ -28,26 +27,20 @@ function WishlistPage() {
           </button>
         </div>
       ) : (
-        <div className="casual-content">
-          <div className="product-casual">
-            {wishlist.map((product) => (
-              <div
-                key={product.id}
-                className="product-wrapper"
-                onClick={() => navigate("/about", { state: { product } })}
-              >
-                <ProductCard
-                  name={product.title}
-                  price={product.price}
-                  original={product.originalPrice || product.price}
-                  image={product.thumbnail}
-                  rating={product.rating}
-                  product={product}
-                />
-              </div>
-            ))}
+        <>
+          <h1>MY WISHLIST</h1>
+          <div className="casual-content">
+            <div className="product-casual">
+              {wishlist.map((product) => (
+                  <ProductCard
+                    name={product.title}
+                    product={product}
+                  />
+                
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </section>
   );

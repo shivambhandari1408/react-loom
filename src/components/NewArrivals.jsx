@@ -24,13 +24,8 @@ function NewArrivals() {
         {products.map((product) => (
           <ProductCard
             key={product.id}
-            name={product.title}
-            price={product.price}
-            original={product.originalPrice || product.price}
-            image={product.thumbnail}
-            rating={product.rating}
-            product={product} // ✅ Pass full product to support WishlistIcon
-            onClick={() => navigate("/about", { state: { product } })} // ✅ Move click handler to ProductCard
+            product={product}
+            onClick={() => navigate("/about", { state: { product } })}
           />
         ))}
       </div>
