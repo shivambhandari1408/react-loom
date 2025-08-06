@@ -1,8 +1,4 @@
-
-
-
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import "../style/productpage.css";
@@ -12,6 +8,10 @@ function ProductPage() {
   const navigate = useNavigate();
   const { category } = useParams();
   const [products, setProducts] = useState([]);
+  const [sortOption, setSortOption] = useState("newest");
+  const [showFilters, setShowFilters] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     if (!category) return;
@@ -20,79 +20,83 @@ function ProductPage() {
       .get(`https://dummyjson.com/products/category/${category}`)
       .then((res) => {
         setProducts(res.data.products);
-        console.log(res, "Products fetched for category:", category);
       })
       .catch((err) => {
         console.error("API error:", err);
       });
   }, [category]);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleFilters = () => setShowFilters((prev) => !prev);
+
+  const options = [
+    { value: "newest", label: "Newest" },
+    { value: "popular", label: "Popular" },
+    { value: "priceLowHigh", label: "Price: Low to High" },
+    { value: "priceHighLow", label: "Price: High to Low" },
+    { value: "discountHighLow", label: "Discount: High to Low" },
+  ];
+
+  const handleSelect = (value) => {
+    setSortOption(value);
+    setDropdownOpen(false);
+  };
+
   return (
     <section className="Casual-section">
-      <h1>{category.toUpperCase()}</h1>
-      <div className="casual-content">
-        {/* Filters */}
-        <div className="filter-container">
-          <div className="filter-section">
-            <h4>Filter</h4>
-            <div className="filter-list1">
-              <div> T-shirt </div>
-              <div> Shirt </div>
-              <div> Jeans </div>
-              <div> Hoodie </div>
-              <div> Shorts </div>
-            </div>
-          </div>
+      <h1 className="category-title">{category?.toUpperCase()}</h1>
 
-          <div className="filter-range">
-            <h4>Price</h4>
-            <input type="range" min={0} max={10000} className="range-bar" />
-            <div className="range-labels">
-              <span>₹0</span>
-              <span>₹10,000</span>
-            </div>
+      {/* ======= SORT & FILTER TOP BAR ======= */}
+      <div className="topbar-controls">
+        <div
+          className="sort-by"
+          onClick={() => setDropdownOpen((prev) => !prev)}
+          ref={dropdownRef}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && setDropdownOpen((prev) => !prev)}
+        >
+          <div className="selected-option">
+            {options.find((opt) => opt.value === sortOption)?.label}
           </div>
+          <span className={`dropdown-arrow ${dropdownOpen ? "open" : ""}`}>
+            ▼
+          </span>
 
-          <div className="filter-color">
-            <h4>Color</h4>
-            <div className="filter-colorall">
-              {["red", "blue", "pink", "orange", "black", "yellow"].map(
-                (color) => (
-                  <div
-                    key={color}
-                    style={{ backgroundColor: color }}
-                    className="color-circle"
-                  ></div>
-                )
-              )}
-            </div>
-          </div>
-
-          <div className="filter-size">
-            <h4>Size</h4>
-            <div className="filter-sizeall">
-              {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
-                <button key={size} className="size-btn">
-                  {size}
-                </button>
+          {dropdownOpen && (
+            <ul className="dropdown-menu">
+              {options.map((option) => (
+                <li
+                  key={option.value}
+                  className={option.value === sortOption ? "active" : ""}
+                  onClick={() => handleSelect(option.value)}
+                >
+                  {option.label}
+                </li>
               ))}
-            </div>
-          </div>
-
-          <div className="filter-dressstyle">
-            <h4>Dress Style</h4>
-            <div>Casual</div>
-            <div>Formal</div>
-            <div>Party</div>
-            <div>Gym</div>
-          </div>
-
-          <div className="apply-filter">
-            <button>Apply Filter</button>
-          </div>
+            </ul>
+          )}
         </div>
 
-        {/* Product List */}
+        <button className="filter-toggle" onClick={toggleFilters}>
+          Filters
+        </button>
+      </div>
+
+      {/* ======= PRODUCT GRID ======= */}
+      <div className="casual-content">
         <div className="product-casual">
           {products.map((product) => (
             <ProductCard
@@ -103,149 +107,102 @@ function ProductPage() {
           ))}
         </div>
       </div>
+
+      {/* ======= FILTER OVERLAY ======= */}
+      {showFilters && (
+        <div className="filter-backdrop" onClick={toggleFilters}>
+          <div className="filter-overlay" onClick={(e) => e.stopPropagation()}>
+            <div className="filter-header">
+              <h3>Filters</h3>
+              <button className="close-filter" onClick={toggleFilters}>
+                ×
+              </button>
+            </div>
+
+            {/* CATEGORY FILTER */}
+            <div className="filter-section">
+              <h4>Category</h4>
+              <div className="filter-list1">
+                <label className="checkbox-label">
+                  <input type="checkbox" /> Casual
+                </label>
+                <label className="checkbox-label">
+                  <input type="checkbox" /> Formal
+                </label>
+                <label className="checkbox-label">
+                  <input type="checkbox" /> Sports
+                </label>
+              </div>
+            </div>
+
+            {/* PRICE RANGE */}
+            <div className="filter-range">
+              <h4>Price Range</h4>
+              <input type="range" min="0" max="1000" className="range-bar" />
+              <div className="range-labels">
+                <span>₹0</span>
+                <span>₹1000</span>
+              </div>
+            </div>
+
+            {/* COLOR FILTER */}
+            <div className="filter-color">
+              <h4>Color</h4>
+              <div className="filter-colorall">
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: "black" }}
+                ></div>
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: "red" }}
+                ></div>
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: "blue" }}
+                ></div>
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: "green" }}
+                ></div>
+              </div>
+            </div>
+
+            {/* SIZE FILTER */}
+            <div className="filter-size">
+              <h4>Size</h4>
+              <div className="filter-sizeall">
+                <button className="size-btn">S</button>
+                <button className="size-btn">M</button>
+                <button className="size-btn">L</button>
+                <button className="size-btn">XL</button>
+              </div>
+            </div>
+
+            {/* DRESS STYLE FILTER */}
+            <div className="filter-dressstyle">
+              <h4>Dress Style</h4>
+              <label className="checkbox-label">
+                <input type="checkbox" /> Party
+              </label>
+              <label className="checkbox-label">
+                <input type="checkbox" /> Work
+              </label>
+              <label className="checkbox-label">
+                <input type="checkbox" /> Vacation
+              </label>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="filter-actions">
+              <button className="clear-btn">Clear</button>
+              <button className="apply-btn">Apply</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
 export default ProductPage;
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import ProductCard from "./ProductCard";
-// import { useNavigate } from "react-router-dom";
-// import "../style/productpage.css";
-// import axios from "axios";
-
-// function ProductPage() {
-//   const navigate = useNavigate();
-//   const { category } = useParams();
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     if (!category) return;
-//     window.scrollTo(0, 0);
-//     axios
-//       .get(`https://dummyjson.com/products/category/${category}`)
-//       .then((res) => {
-//         setProducts(res.data.products);
-//         console.log(res, "Products fetched for category:", category);
-//       })
-//       .catch((err) => {
-//         console.error("API error:", err);
-//       });
-//   }, [category]);
-
-//   return (
-//     <section className="Casual-section">
-//       <h1>{category.toUpperCase()}</h1>
-//       <div className="casual-content">
-//         <div className="filter-container">
-//           {/* Filters */}
-//           <div className="filter-section">
-//             <h4>Filter</h4>
-//             <div className="filter-list1">
-//               <div> T-shirt </div>
-//               <div> Shirt </div>
-//               <div> Jeans </div>
-//               <div> Hoodie </div>
-//               <div> Shorts </div>
-//             </div>
-//           </div>
-
-//           <div className="filter-range">
-//             <h4>Price</h4>
-//             <input type="range" min={0} max={10000} className="range-bar" />
-//             <div className="range-labels">
-//               <span>₹0</span>
-//               <span>₹10,000</span>
-//             </div>
-//           </div>
-
-//           <div className="filter-color">
-//             <h4>Color</h4>
-//             <div className="filter-colorall">
-//               <div
-//                 style={{ backgroundColor: "red" }}
-//                 className="color-circle"
-//               ></div>
-//               <div
-//                 style={{ backgroundColor: "blue" }}
-//                 className="color-circle"
-//               ></div>
-//               <div
-//                 style={{ backgroundColor: "pink" }}
-//                 className="color-circle"
-//               ></div>
-//               <div
-//                 style={{ backgroundColor: "orange" }}
-//                 className="color-circle"
-//               ></div>
-//               <div
-//                 style={{ backgroundColor: "black" }}
-//                 className="color-circle"
-//               ></div>
-//               <div
-//                 style={{ backgroundColor: "yellow" }}
-//                 className="color-circle"
-//               ></div>
-//             </div>
-//           </div>
-
-//           <div className="filter-size">
-//             <h4>Size</h4>
-//             <div className="filter-sizeall">
-//               {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
-//                 <button key={size} className="size-btn">
-//                   {size}
-//                 </button>
-//               ))}
-//             </div>
-//           </div>
-
-//           <div className="filter-dressstyle">
-//             <h4>Dress Style</h4>
-//             <div>Casual</div>
-//             <div>Formal</div>
-//             <div>Party</div>
-//             <div>Gym</div>
-//           </div>
-
-//           <div className="apply-filter">
-//             <button>Apply Filter</button>
-//           </div>
-//         </div>
-
-//         <div className="product-casual">
-//           {products.map((product) => (
-//               <div
-//                 key={product.id}
-//                 className="product-wrapper"
-//                 onClick={() => navigate("/about", { state: { product } })}
-//               >
-//                 <ProductCard 
-//                   name={product.title}
-//                   price={product.price}
-//                   original={product.originalPrice || product.price}
-//                   image={product.thumbnail}
-//                   rating={product.rating} product={product} />
-//               </div>
-
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default ProductPage;
-
-
-
-
-

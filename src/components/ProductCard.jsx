@@ -2,7 +2,18 @@ import React from "react";
 import "../style/ProductCard.css";
 import WishlistIcon from "../pages/WishlistIcon";
 
-function ProductCard({ name, price, original, image, rating, product = {}, onClick }) {
+function ProductCard({
+  name,
+  price,
+  original,
+  image,
+  rating,
+  product = {},
+  onClick,
+  onAddToCart,
+  showRating = true,
+  showAddToCart = false,
+}) {
   const finalProduct = {
     id: product.id || Date.now(),
     name: name || product.name || product.title || "Unnamed Product",
@@ -25,6 +36,7 @@ function ProductCard({ name, price, original, image, rating, product = {}, onCli
           <WishlistIcon product={product} />
         </div>
       </div>
+
       <div className="product-info">
         <h2 className="product-name">{finalProduct.name}</h2>
         <div className="product-pricing">
@@ -33,8 +45,24 @@ function ProductCard({ name, price, original, image, rating, product = {}, onCli
             <span className="original-price">{finalProduct.original}</span>
           )}
         </div>
-        <div className="product-rating">⭐ {finalProduct.rating}</div>
+        {showRating && (
+          <div className="product-rating">⭐ {finalProduct.rating}</div>
+        )}
       </div>
+
+      {showAddToCart && (
+        <div className="add-to-cart-container">
+          <button
+            className="add-to-cart-btn"
+            onClick={(e) => {
+              e.stopPropagation(); // prevent triggering onClick for card
+              if (onAddToCart) onAddToCart(finalProduct);
+            }}
+          >
+            Add to Cart
+          </button>
+        </div>
+      )}
     </div>
   );
 }

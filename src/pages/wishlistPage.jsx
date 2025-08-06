@@ -5,9 +5,24 @@ import ProductCard from "../components/ProductCard";
 import "../style/wishlistPage.css";
 import "../style/bag.css"; // to reuse empty-cart styles
 
-function WishlistPage() {
+function WishlistPage({setCartCount}) {
   const navigate = useNavigate();
-  const { wishlist } = useWishlist();
+  const {wishlist, removeFromWishlist}=useWishlist();
+
+  const handleAddToCart = (product) => {
+    const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existingIndex = savedCart.findIndex((item)=> item.id === product.id);
+    if (existingIndex !== -1) {
+      savedCart[existingIndex].quantity += 1; // Increment quantity if already exists
+    } else {
+      savedCart.push({ id: product.id, quantity: 1,  }); // Add new item
+    }
+    localStorage.setItem("cart", JSON.stringify(savedCart));
+
+    const total = savedCart.length;
+    setCartCount(total);
+    removeFromWishlist(product.id);
+  };
 
   return (
     <section className="casual-section">
@@ -35,8 +50,11 @@ function WishlistPage() {
                   <ProductCard
                     name={product.title}
                     product={product}
+                    showAddToCart={true}
+                    showRating={false}
+                    onAddToCart={handleAddToCart}
+                    onClick={()=> navigate("/about",{ state: { product } })}
                   />
-                
               ))}
             </div>
           </div>

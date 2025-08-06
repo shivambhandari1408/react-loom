@@ -34,6 +34,9 @@ export const useWishlist = () => {
         : [...prev, product]; // ✅ Store full object
     });
   };
+  const removeFromWishlist = (id) => {
+    setWishlist((prev)=>prev.filter((item)=>item.id !==id));
+  };
 
-  return { wishlist, isWishlisted, toggleWishlist };
+  return { wishlist, isWishlisted, toggleWishlist, removeFromWishlist };
 };

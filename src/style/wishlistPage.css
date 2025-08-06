@@ -24,10 +24,8 @@
 
 /* Product Grid */
 .product-casual {
-  margin-top: 50px;
-  padding-left: 100px;
   display: grid;
-  grid-template-columns: repeat(4, 0fr);
+  grid-template-columns: repeat(5, 0fr);
   gap: 10px;
   width: 100%;
 }
@@ -58,7 +56,7 @@
 }
 
 .empty-cart-image {
-  width: 250px;
+  width: 120px;
   max-width: 100%;
   margin-bottom: 30px;
 }
@@ -69,7 +67,7 @@
   color: white;
   padding: 12px 25px;
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;

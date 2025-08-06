@@ -12,12 +12,22 @@
     align-items: center;
     border-bottom: 1px solid #ddd;
     background-color: white;
-    transition: all 0.4s ease, opacity 0.3s ease;
+    transition: all 0.4s ease,  opacity 0.3s ease, background-color 0.3s ease;
     transform: translateY(0);
     opacity: 1;
-    z-index: 1000;;
+    z-index: 1000;
 }
 
+.navbar.transparent-bg {
+  background-color: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  box-shadow:  0 4px 6px -4px rgba(0, 0, 0, 0.2);   /* bottom shadow */
+}
+.navbar.solid-bg {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
 .navbar.slide-up{
   transform: translateY(-100%);
   opacity: 0;
@@ -35,27 +45,21 @@
   display: inline-block;
 }
 .menu-dropdown {
-  display: flex;
   flex-direction: column;
-  
   position: absolute;
-  top: 35px; 
+  top: 35px;
   left: 10px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.85); /* solid dark background */
   border-radius: 10px;
-  padding: 10px 60px 40px 20px;
   z-index: 1000;
   display: flex;
-  width: 130px;
-  gap: 17px;
-  backdrop-filter: blur(12px);
-  
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility  0.3s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-
 
 .menu-wrapper:hover .menu-dropdown,
 .menu-dropdown:hover{
@@ -63,15 +67,23 @@
   visibility: visible;
   pointer-events: auto;
   transition-delay: 0s;
-
+}
+.menu-dropdown:not(:hover) {
+  transition-delay: 0.5s; /* hide after 0.5s */
 }
 
 .menu-item {
   color:white ;
+  padding: 10px 15px 10px 20px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
   transition: color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* subtle white overlay */
+  transition: background-color 0.2s ease;
 }
 
 .menu-wrapper:not(:hover):not(:has(.menu-dropdown:hover)) .menu-dropdown {
@@ -93,7 +105,7 @@
     height: 45px;
     padding: 0px 20px;
     border-radius: -18px;
-    background-color: #f3f4f6;
+    background-color: #0000001a;
 }
 
 .cart-icon {
@@ -111,7 +123,7 @@
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: red;
+  background-color:black;
   color: white;
   font-size: 12px;
   padding: 2px 6px;

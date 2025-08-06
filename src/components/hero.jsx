@@ -1,5 +1,4 @@
-import React from "react";
-import model2 from "../assets/model2.png";
+
 import "../style/hero.css";
 
 function Hero() {
