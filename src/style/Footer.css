@@ -1,4 +1,92 @@
-.footer-container {
+.footer {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 40px 60px 20px;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 20px;
+}
+
+/* Columns */
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Logo & Social */
+.footer-logo-img {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Why Loom Text */
+.footer-why-loom h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.footer-logo{
+  color: #fff;
+  width: 120px;
+}
+.footer-why-loom p {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/* Links */
+.footer-column h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.footer-column ul li:hover {
+  color: #fff;
+}
+
+/* Bottom Copy */
+.footer-copy {
+  text-align: center;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #999;
+}
+
+
+
+/* .footer-container {
   background-color: #fff;
   font-family: Arial, sans-serif;
   padding: 40px 40px;
@@ -99,4 +187,4 @@
   color: #555;
   cursor: pointer;
 }
-
+ */

@@ -48,6 +48,7 @@ function WishlistPage({setCartCount}) {
             <div className="product-casual">
               {wishlist.map((product) => (
                   <ProductCard
+                    key={product.id}
                     name={product.title}
                     product={product}
                     showAddToCart={true}

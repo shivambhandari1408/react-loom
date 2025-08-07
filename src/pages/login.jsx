@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/login.css";
 
-function LoginPage() {
+function LoginPage({ setIsLoggedIn }) {
   const [phone, setPhone] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSendOtp = () => {
     if (/^\d{10}$/.test(phone)) {
@@ -15,8 +18,10 @@ function LoginPage() {
   };
 
   const handleVerifyOtp = () => {
-    if (/^\d{6}$/.test(otp)) {
-      alert("OTP Verified");
+    if (otp === "123456") {
+      alert("User login successful");
+      setIsLoggedIn(true);
+      navigate("/account");
     } else {
       alert("Please enter a valid 6-digit OTP.");
     }
@@ -25,7 +30,9 @@ function LoginPage() {
   return (
     <div className="login-wrapper">
       <div className="login-box">
-        <h1 className="brand-name">Welcome to <span>Style</span></h1>
+        <h1 className="brand-name">
+          Welcome to <span>Style</span>
+        </h1>
         <h2 className="login-heading">Login with OTP</h2>
 
         {!otpSent ? (

@@ -1,0 +1,77 @@
+.account-container {
+  padding: 20px;
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: auto;
+}
+
+.account-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.account-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.account-item:hover {
+  background-color: #e0e0e0;
+}
+
+.account-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.account-label {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+.account-arrow {
+  font-size: 20px;
+  color: gray;
+}
+
+.logout-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logout-btn:hover {
+  background-color: #e60000;
+}
+
+.version-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #777;
+}

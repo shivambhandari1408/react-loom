@@ -18,9 +18,9 @@ function NewArrivals() {
   }, []);
 
   return (
-    <section id="new-arrivals-section" className="new-arrivals-section">
+    <section className="new-arrivals-section">
       <h1 className="new-arrivals-heading">NEW ARRIVALS</h1>
-      <div className="product-grid">
+      <div className="NewArrivals-grid">
         {products.map((product) => (
           <ProductCard
             key={product.id}
