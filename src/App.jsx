@@ -3,7 +3,6 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import './style/App.css';
 
 import Navbar from './components/navbar';
-import Hero from './components/hero';
 import Footer from './components/footer';
 import ProductPage from './components/ProductpPage';
 import About from './pages/about';

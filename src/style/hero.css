@@ -1,8 +1,16 @@
 .hero {
     display: flex;
-    padding: 0px 0px 0px 0px;
+    padding: 0;
     background-color: black;
-    /* background-color: #f9f9f9; */
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    overflow: hidden; /* Hide any overflow */
+}
+
+.hero video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video fills without stretching */
 }
 /* .hero-text {
     padding: 0 0 21px 40px;
