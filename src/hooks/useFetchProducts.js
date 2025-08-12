@@ -1,11 +1,7 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-/**
- * Simple product fetcher hook.
- * Returns { products, loading, error }.
- * Accepts full url.
- */
 export default function useFetchProducts(url) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(!!url);
@@ -37,3 +33,4 @@ export default function useFetchProducts(url) {
 
   return { products, loading, error };
 }
+  

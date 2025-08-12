@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 
-/**
- * Simple localStorage syncronized state.
- */
 export default function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
     try {

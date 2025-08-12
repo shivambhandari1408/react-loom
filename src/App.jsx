@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import ProductPage from "./pages/ProductpPage";
 import About from "./pages/About";
